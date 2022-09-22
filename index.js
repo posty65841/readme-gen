@@ -2,104 +2,126 @@ const fs = require("fs")
 const inquirer = require("inquirer");
 
 
-function genBadgeForLicense(licenses){
+function genBadgeForLicense(licenses) {
 
     let output = ""
 
     // licenses is an array like ['MIT', 'BSD']
     // iterate over licenses (licenses.forEach)
-    
-    for(const license of licenses) {
-        if(license === "MIT")
+
+    for (const license of licenses) {
+        if (license === "MIT")
             output += "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
         else if (license === "BSD")
             output += "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
-         else if (license === "CC0")
+        else if (license === "CC0")
             output += "[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)"
+        else if (license === "WTFPL")
+            output += "[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)"
 
 
-        }
+
+
+    }
 
     return output
 }
+function tableOfContents(input) {
+    let output = ""
+    console.log(input)
+    if (input === "n") {
+        output = "" 
+    }else{
+        output = "tableOfContents"
+    }
+
+    return output
+} 
+
+
 
 inquirer
-.prompt([
-{
-    type: "input",
-    message: "would you like a table of contents?",
-    name: "tableOfContents",
-},
-// {
-//     type: "input",
-//     message: "what is your table of contents?",
-//     name: "tableOfContents",
-//     when: determineIfShowingTOC(answers)
-// },
-{
-    type: "input",
-    message: "what is your repo name?",
-    name: "repositoryName",
-},
-{
-    type: "input",
-    message: "application description ",
-    name: "description",
-},
-{
-    type: "input",
-    message: "was there any contributors?",
-    name: "contributors",
-},
-{
-    type: "input",
-    message: "what are the uses for this application?",
-    name: "uses",
-},
-{
-    type: "input",
-    message: "what contact information would you like to display?",
-    name: "contactInfo",
+    .prompt([
+        {
+            type: "input",
+            message: "would you like a table of contents? (y/n)",
+            name: "tableOfContents",
+        },
+       
+        {
+            type: "input",
+            message: "what is your repo name?",
+            name: "repositoryName",
+        },
+        {
+            type: "input",
+            message: "application description ",
+            name: "description",
+        },
+        {
+            type: "input",
+            message: "was there any contributors?",
+            name: "contributors",
+        },
+        {
+            type: "input",
+            message: "what are the uses for this application?",
+            name: "uses",
+        },
+        {
+            type: "input",
+            message: "what contact information would you like to display?",
+            name: "contactInfo",
 
-},
-{
-    type: "checkbox",
-    message: "licenses if any?",
-    name: "licenses",
-    choices:[ "MIT","BSD", "CCO", "IBM"]
-},
+        },
+        {
+            type: "checkbox",
+            message: "licenses if any?",
+            name: "licenses",
+            choices: ["MIT", "BSD", "CC0", "WTFPL"]
+        },
+        {
+            type: "input",
+            message: "link your github account",
+            name: "github",
+            
+        },
 
 
-]).then((responses) => {
-    let readmeText = `
-# ${responses['repositoryName']}
+    ]).then((responses) => {
+        let readmeText = `
+# ${responses.repositoryName}
 
-## table of contents 
-${(responses['tableOfContents'])}
+
+${tableOfContents(responses['tableOfContents'])}
 ## Description 
-${responses['description']}
+${responses.description}
 
 ## License 
 ${genBadgeForLicense(responses['licenses'])}
 
 ## contributions
-${responses['contributors']}
+${responses.contributors}
 
 ## usage 
-${responses['uses']}
+${responses.uses}
 
 
 ## contact
-${responses['contactInfo']}
+${responses.contactInfo}
+
+## github
+${responses.github}
+
 `
 
-    fs.writeFile("read.md",readmeText,function (err){
+        fs.writeFile("read.md", readmeText, function (err) {
 
-        if(err)
-        console.log(err);
+            if (err)
+                console.log(err);
 
-    })
-});
+        })
+    });
 
 
 
