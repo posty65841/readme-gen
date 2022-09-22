@@ -1,83 +1,105 @@
 const fs = require("fs")
-let TOCQuestion = "would you like a table of contents?"
-let TOC = "table of contents "
-
-let repoNameQuestion = "what would you like your repo name to be? "
-let repoName = "user repo name "
-
-let descriptionQuestion = "what would you like the description to be? "
-let description = "user description "
+const inquirer = require("inquirer");
 
 
+function genBadgeForLicense(licenses){
 
-let contributionQuestion = "were there any contributors?"
-let Contributions = "contributors "
+    let output = ""
 
-let usageQuestion = "what are the uses of this application?"
-let usage = "uses"
-
-let contactQuestion = "what contact info would you like to display?"
-let contact = "users contact info"
-
-let licenseQuestion = "what license did you use?"
-let license = "MIT"
-
-function genBadgeForLicense(){
-    if(license === "MIT")
-    return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
-
+    // licenses is an array like ['MIT', 'BSD']
+    // iterate over licenses (licenses.forEach)
     
+    for(const license of licenses) {
+        if(license === "MIT")
+            output += "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+        else if (license === "BSD")
+            output += "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
+         else if (license === "CC0")
+            output += "[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)"
+
+
+        }
+
+    return output
 }
 
+inquirer
+.prompt([
+{
+    type: "input",
+    message: "would you like a table of contents?",
+    name: "tableOfContents",
+},
+// {
+//     type: "input",
+//     message: "what is your table of contents?",
+//     name: "tableOfContents",
+//     when: determineIfShowingTOC(answers)
+// },
+{
+    type: "input",
+    message: "what is your repo name?",
+    name: "repositoryName",
+},
+{
+    type: "input",
+    message: "application description ",
+    name: "description",
+},
+{
+    type: "input",
+    message: "was there any contributors?",
+    name: "contributors",
+},
+{
+    type: "input",
+    message: "what are the uses for this application?",
+    name: "uses",
+},
+{
+    type: "input",
+    message: "what contact information would you like to display?",
+    name: "contactInfo",
+
+},
+{
+    type: "checkbox",
+    message: "licenses if any?",
+    name: "licenses",
+    choices:[ "MIT","BSD", "CCO", "IBM"]
+},
 
 
-let readMeText = `
-# ${repoName}
+]).then((responses) => {
+    let readmeText = `
+# ${responses['repositoryName']}
 
+## table of contents 
+${(responses['tableOfContents'])}
 ## Description 
-${description}
+${responses['description']}
 
 ## License 
-${genBadgeForLicense()}
+${genBadgeForLicense(responses['licenses'])}
 
 ## contributions
-${Contributions}
+${responses['contributors']}
 
 ## usage 
-${usage}
+${responses['uses']}
 
 
 ## contact
-${contact}
+${responses['contactInfo']}
 `
 
-fs.writeFile("read.md",readMeText,function (err){
+    fs.writeFile("read.md",readmeText,function (err){
 
-    if(err)
-    console.log(err);
+        if(err)
+        console.log(err);
 
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    })
+});
 
 
 
