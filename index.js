@@ -36,9 +36,7 @@ function tableOfContents(input) {
     }
 
     return output
-} 
-
-
+}
 
 inquirer
     .prompt([
@@ -86,6 +84,12 @@ inquirer
             name: "github",
             
         },
+        {
+            type: "input",
+            message: "explain what is required for instalation",
+            name: "instalation",
+            
+        },
 
 
     ]).then((responses) => {
@@ -112,6 +116,10 @@ ${responses.contactInfo}
 
 ## github
 ${responses.github}
+
+
+## instalation
+${responses.instalation}
 
 `
 
