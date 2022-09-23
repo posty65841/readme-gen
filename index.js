@@ -6,9 +6,7 @@ function genBadgeForLicense(licenses) {
 
     let output = ""
 
-    // licenses is an array like ['MIT', 'BSD']
-    // iterate over licenses (licenses.forEach)
-
+    
     for (const license of licenses) {
         if (license === "MIT")
             output += "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
@@ -32,7 +30,8 @@ function tableOfContents(input) {
     if (input === "n") {
         output = "" 
     }else{
-        output = "tableOfContents"
+        output = "table Of Contents"
+        
     }
 
     return output
@@ -86,18 +85,26 @@ inquirer
         },
         {
             type: "input",
-            message: "explain what is required for instalation",
-            name: "instalation",
+            message: "explain what is required for installation",
+            name: "installation",
             
         },
 
 
     ]).then((responses) => {
         let readmeText = `
-# ${responses.repositoryName}
+## Title 
+${responses.repositoryName}
 
 
 ${tableOfContents(responses['tableOfContents'])}
+* [description](#description)
+* [licenses](#licenses)
+* [contributions](#contributions)
+* [usage](#usage)
+* [contact](#contact)
+* [github](#github)
+* [installation](#installation)
 ## Description 
 ${responses.description}
 
@@ -118,8 +125,8 @@ ${responses.contactInfo}
 ${responses.github}
 
 
-## instalation
-${responses.instalation}
+## installation
+${responses.installation}
 
 `
 
