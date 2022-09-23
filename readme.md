@@ -28,7 +28,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-this project allows a user to generate a rad me from their command terminal .
+this project allows a user to generate a rad me from their command terminal
+via node js  .
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -39,6 +40,6 @@ this project allows a user to generate a rad me from their command terminal .
 
 Austin Post  - austin.post.ap@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: https://github.com/posty65841/readme-gen
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
