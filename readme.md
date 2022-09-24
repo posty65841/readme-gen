@@ -28,7 +28,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-this project allows a user to generate a rad me from their command terminal
+this project allows a user to generate a read me from their command terminal
 via node js  .
 
 
