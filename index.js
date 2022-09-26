@@ -89,6 +89,12 @@ inquirer
             name: "installation",
             
         },
+        {
+            type: "input",
+            message: "any tests?",
+            name: "test",
+            
+        },
 
 
     ]).then((responses) => {
@@ -127,6 +133,9 @@ ${responses.github}
 
 ## installation
 ${responses.installation}
+
+## test
+${responses.test}
 
 `
 
