@@ -129,6 +129,7 @@ ${responses.contactInfo}
 
 ## github
 ${responses.github}
+[github](https://github.com/${responses.github})
 
 
 ## installation
