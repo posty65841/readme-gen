@@ -1,6 +1,6 @@
 
 ## Title 
-cool repo
+ge
 
 
 table Of Contents
@@ -12,25 +12,28 @@ table Of Contents
 * [github](#github)
 * [installation](#installation)
 ## Description 
-this app creates a read me 
+geg
 
 ## License 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+
 
 ## contributions
-none
+e
 
 ## usage 
-used to gen a readme
+gw
 
 
 ## contact
-posty65841@gmail.com
+sgg
 
 ## github
-https://github.com/posty65841
+gwegrrg
 
 
 ## installation
-node
+rgsgw
+
+## test
+wgergweg
 
